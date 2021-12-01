@@ -28,7 +28,7 @@ const NetworkAlert = () => {
     <>
       <Modal show={true} backdrop="static" keyboard={false}>
         <Modal.Header>
-          <Modal.Title>Wrong Network Detected</Modal.Title>
+          <Modal.Title>Rong Network Detected</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>

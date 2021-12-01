@@ -11,6 +11,30 @@ export const LoadingNoun = () => {
   );
 };
 
+export const MekaToad: React.FC<{
+  imgPath: string;
+  alt: string;
+  className?: string;
+  wrapperClassName?: string;
+}> = props => {
+  const { imgPath, alt, className, wrapperClassName } = props;
+  return (
+    <div className={`${classes.imgWrapper} ${wrapperClassName}`}>
+      {/*<div className={className}>*/}
+      {/*  MekaToad goes here*/}
+      {/*  <input type={'hidden'} defaultValue={imgPath} />*/}
+      {/*  <input type={'hidden'} defaultValue={alt} />*/}
+      {/*</div>*/}
+      <Image
+        className={`${classes.img} ${className}`}
+        src={imgPath ? imgPath : loadingNoun}
+        alt={alt}
+        fluid
+      />
+    </div>
+  );
+};
+
 const Noun: React.FC<{
   imgPath: string;
   alt: string;

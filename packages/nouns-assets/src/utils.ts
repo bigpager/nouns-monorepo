@@ -7,7 +7,7 @@ const { bodies, accessories, heads, glasses } = images;
  * Get encoded part and background information using a Noun seed
  * @param seed The Noun seed
  */
-export const getNounData = (seed: NounSeed): NounData => {
+export const getMekaToadData = (seed: NounSeed): NounData => {
   return {
     parts: [
       bodies[seed.body],
@@ -23,7 +23,7 @@ export const getNounData = (seed: NounSeed): NounData => {
  * Generate a random Noun seed
  * @param seed The Noun seed
  */
-export const getRandomNounSeed = (): NounSeed => {
+export const getRandomMekaToadSeed = (): NounSeed => {
   return {
     background: Math.floor(Math.random() * bgcolors.length),
     body: Math.floor(Math.random() * bodies.length),

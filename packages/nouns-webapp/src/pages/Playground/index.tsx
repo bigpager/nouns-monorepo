@@ -2,10 +2,10 @@ import { Container, Col, Button, Row, FloatingLabel, Form } from 'react-bootstra
 import classes from './Playground.module.css';
 import React, { useEffect, useState } from 'react';
 import Link from '../../components/Link';
-import { ImageData, getNounData, getRandomNounSeed } from '@nouns/assets';
+import { ImageData, getMekaToadData, getRandomMekaToadSeed } from '@nouns/assets';
 import { buildSVG } from '@nouns/sdk';
-import Noun from '../../components/Noun';
-import NounModal from './NounModal';
+import {MekaToad} from '../../components/Noun';
+// import NounModal from './NounModal';
 
 interface Trait {
   title: string;
@@ -46,14 +46,14 @@ const Playground: React.FC = () => {
   const [traits, setTraits] = useState<Trait[]>();
   const [modSeed, setModSeed] = useState<{ [key: string]: number }>();
   const [initLoad, setInitLoad] = useState<boolean>(true);
-  const [displayNoun, setDisplayNoun] = useState<boolean>(false);
-  const [indexOfNounToDisplay, setIndexOfNounToDisplay] = useState<number>();
+  // const [displayNoun, setDisplayNoun] = useState<boolean>(false);
+  // const [indexOfNounToDisplay, setIndexOfNounToDisplay] = useState<number>();
 
-  const generateNounSvg = React.useCallback(
+  const generateMekaToad = React.useCallback(
     (amount: number = 1) => {
       for (let i = 0; i < amount; i++) {
-        const seed = { ...getRandomNounSeed(), ...modSeed };
-        const { parts, background } = getNounData(seed);
+        const seed = { ...getRandomMekaToadSeed(), ...modSeed };
+        const { parts, background } = getMekaToadData(seed);
         const svg = buildSVG(parts, ImageData.palette, background);
         setNounSvgs(prev => {
           return prev ? [svg, ...prev] : [svg];
@@ -81,10 +81,10 @@ const Playground: React.FC = () => {
     );
 
     if (initLoad) {
-      generateNounSvg(8);
+      generateMekaToad(8);
       setInitLoad(false);
     }
-  }, [generateNounSvg, initLoad]);
+  }, [generateMekaToad, initLoad]);
 
   const traitOptions = (trait: Trait) => {
     return Array.from(Array(trait.traitNames.length + 1)).map((_, index) => {
@@ -110,14 +110,14 @@ const Playground: React.FC = () => {
 
   return (
     <>
-      {displayNoun && indexOfNounToDisplay !== undefined && nounSvgs && (
-        <NounModal
-          onDismiss={() => {
-            setDisplayNoun(false);
-          }}
-          svg={nounSvgs[indexOfNounToDisplay]}
-        />
-      )}
+      {/*{displayNoun && indexOfNounToDisplay !== undefined && nounSvgs && (*/}
+      {/*  <NounModal*/}
+      {/*    onDismiss={() => {*/}
+      {/*      setDisplayNoun(false);*/}
+      {/*    }}*/}
+      {/*    svg={nounSvgs[indexOfNounToDisplay]}*/}
+      {/*  />*/}
+      {/*)}*/}
 
       <Container fluid="lg">
         <Row>
@@ -135,7 +135,7 @@ const Playground: React.FC = () => {
           <Col lg={3}>
             <Button
               onClick={() => {
-                generateNounSvg();
+                generateMekaToad();
               }}
               className={classes.generateBtn}
             >
@@ -144,7 +144,7 @@ const Playground: React.FC = () => {
             {traits &&
               traits.map((trait, index) => {
                 return (
-                  <Form className={classes.traitForm}>
+                  <Form className={classes.traitForm} key={index}>
                     <FloatingLabel
                       controlId="floatingSelect"
                       label={capitalizeFirstLetter(trait.title)}
@@ -176,22 +176,16 @@ const Playground: React.FC = () => {
                 nounSvgs.map((svg, i) => {
                   return (
                     <Col xs={4} lg={3} key={i}>
-                      <div
-                        onClick={() => {
-                          setIndexOfNounToDisplay(i);
-                          setDisplayNoun(true);
-                        }}
-                      >
-                        <Noun
-                          imgPath={`data:image/svg+xml;base64,${btoa(svg)}`}
-                          alt="noun"
-                          className={classes.nounImg}
-                          wrapperClassName={classes.nounWrapper}
-                        />
-                      </div>
+                      <MekaToad
+                        imgPath={`data:image/svg+xml;base64,${btoa(svg)}`}
+                        alt="MekaToad"
+                        className={classes.nounImg}
+                        wrapperClassName={classes.nounWrapper}
+                      />
                     </Col>
                   );
-                })}
+                })
+              }
             </Row>
           </Col>
         </Row>

@@ -1,3 +1,53 @@
+# CHANGES FOR MEKATOADZ DEVELOPMENT
+
+## Running the site
+
+> After cloning the repo to your local computer, do these steps:
+
+1. `yarn` (this installs all dependencies)
+1. `yarn build` (compiles code)
+1. `yarn start` (encodes `png` --> `svg` and starts local web server)
+
+> Now you should have the random generator running at http://localhost:3000/playground
+
+---
+
+## Updating the images
+
+> MekaToadz source images are stored in:
+
+```
+    ./packages/nouns-assets/images
+      /0-backgrounds
+      /1-bodies
+      /2-accessories
+      /3-heads
+      /4-glasses
+            
+```
+
+> These directories contain a small subset of the Nouns images (to be replaced with MekaToadz images). 
+> For reference, I copied the full collection of Nouns images to:
+
+```
+    ./packages/nouns-assets/images
+      /sample-0-backgrounds
+      /sample-1-bodies
+      /sample-2-accessories
+      /sample-3-heads
+      /sample-4-glasses
+            
+```
+
+## Restarting the site
+
+1. Shut down the currently-running process (`Ctrl+C` in Windows)
+1. Execute `yarn start` again (must be in the repo's root directory).
+
+> This will re-encode any PNG images as SVGs and restart the local web server.
+
+---
+
 # nouns-monorepo
 
 Nouns DAO is a generative avatar art collective run by a group of crypto misfits.
